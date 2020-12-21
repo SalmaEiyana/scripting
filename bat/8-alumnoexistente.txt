@@ -1,0 +1,16 @@
+#!/bin/bash
+alumnos="/home/sebas/alumnos.txt"
+if test -f "$alumnos"
+then
+        echo "Alumnos que no existen en el sistema: "
+        while IFS= read -r linea
+        do
+                nombre=`echo $linea | cut -d ":" -f1`
+                getent passwd $nombre > /dev/null
+                if [ $? -ne 0 ]; then
+                        echo $nombre
+                fi
+        done < $alumnos
+else
+        echo "El fichero no existe"
+fi

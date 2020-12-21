@@ -1,0 +1,8 @@
+#!/bin/bash
+read -p "Escribe un numero: " num
+echo "Su tabla de multiplicar es la siguiente: "
+for ((mult=0;$mult<=10;mult=$mult+1))
+do
+        resul=$((num*mult))
+        echo $num*$mult=$resul
+done

@@ -1,0 +1,35 @@
+#!/bin/bash
+read -p "Dame un numero entre 5  y 9: " numlineas
+if ! [ $numlineas -ge 5 -a $numlineas -le 9 ];then
+        echo "Ups... Debes ingresar un valor entre 5 y 9..."
+fi
+
+# Parte de arriba
+
+for (( i=1; i<=numlineas; i++ ))
+do
+        for (( s=numlineas;s>=i;s-- ))
+        do
+                echo -n " "
+        done
+        for (( j=1; j<=i; j++ ))
+        do
+                echo -n "* "
+        done
+        echo ""
+done
+
+# Parte de abajo
+
+for (( i=numlineas-1; i>=1; i--))
+do
+        for (( s=i; s<=numlineas; s++ ))
+        do
+                echo -n " "
+        done
+        for (( j=1; j<=i; j++ ))
+        do
+                echo -n "* "
+        done
+        echo ""
+done

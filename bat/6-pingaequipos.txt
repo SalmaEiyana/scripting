@@ -1,0 +1,21 @@
+#!/bin/bash
+fichero="/home/sebas/list.txt"
+if test -f "$fichero"
+then
+        while IFS= read -r linea
+        do
+                nombre=`echo $linea | cut -d "=" -f1`
+                ip=`echo $linea | cut -d "=" -f2`
+                ping -c1 $ip >/dev/null
+                respuesta1=$? #Guardamos estado
+                        if [ $respuesta1 -eq 0 ];then
+                                echo "$nombre: ESTA VIVA. HORA: $(date)" >> conexiones.log
+                        elif [ $respuesta1 -eq 1 ];then
+                                echo "$nombre: NO CONTESTA. HORA: $(date)" >> conexiones.log
+                        else [ $respuesta1 -eq 2 ] then
+                                echo "$nombre: ERROR EN PING. HORA: $(date)" >> conexiones.log
+                        fi
+        done < $fichero
+else
+        echo "El fichero no existe"
+fi

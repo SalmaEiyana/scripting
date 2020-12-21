@@ -1,0 +1,75 @@
+#!/bin/bash
+pause(){
+        read -p "Presiona una tecla para continuar..." enterKey
+}
+opcion1(){
+        echo "Suma - Introduce un numero"
+        read num1
+        echo "Suma - Introduce otro"
+        read num2
+        resul=$((num1+num2))
+        echo "El resultado es $resul"
+        pause
+}
+opcion2(){
+        echo "Resta - Introduce un numero"
+        read num1
+        echo "Resta - Introduce un numero"
+        read num2
+        resul=$((num1-num2))
+        echo "El resultado es $resul"
+        pause
+}
+opcion3(){
+        echo "Multiplicacion - Introduce un numero"
+        read num1
+        echo "Multiplicacion - Introduce otro"
+        read num2
+        resul=$((num1*num2))
+        echo "El resultado es $resul"
+        pause
+}
+opcion4(){
+        echo "Division - Introduce un numero"
+        read num1
+        echo "Division - Introduce otro"
+        read num2
+        if [ $num2 -eq 0 ]
+                then
+                        echo "No es posible dividir entre 0"
+        else
+                resul=$((num1/num2))
+                echo "El resultado es $resul"
+        fi
+        pause
+}
+mostrarMenu(){
+        clear
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        echo "   MENU - LINEA DE COMANDOS   "
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        echo "1. Sumar"
+        echo "2. Restar"
+        echo "3. Multiplicar"
+        echo "4. Dividir"
+        echo "0. Salir"
+}
+leerOpcion(){
+        #Creo variable local
+        local opcion
+        #Leo la opcion y la guardo en la variable
+        read -p "Introduce una opcion [0-4]: " opcion
+        case $opcion in
+                1)opcion1;; #Lanzo la funcion opcion1
+                2)opcion2;; #Lanzo la funcion opcion2
+                3)opcion3;; #Lanzo la funcion opcion3
+                4)opcion4;; #Lanzo la funcion opcion4
+                0)exit 0;; #Salir del Script
+                *)echo "Error: No se ha introducido un valor válido" && sleep 2 #Con cualquier otro numero
+                esac
+}
+while true
+do
+        mostrarMenu #Muestro el menu
+        leerOpcion  #Leo la opcion
+done

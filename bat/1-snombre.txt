@@ -1,0 +1,6 @@
+#!/bin/bash
+read -p "Introduce tu nombre: " nom
+read -p "Introduce tu primer apellido: " ap1
+read -p "Introduce tu segundo apellido: " ap2
+sleep 5
+echo "Tu nombre completo es $nom $ap1 $ap2"

@@ -1,0 +1,40 @@
+#!/bin/bash
+pause(){
+        read -p "Presiona una tecla para continuar..." enterKey
+}
+opcion1(){
+        rm -r $fichero
+        echo "Fichero borrado con éxito"
+        pause
+        exit
+}
+opcion2(){
+        cat $fichero
+        pause
+        exit
+}
+mostrarMenu(){
+        clear
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        echo "   MENU - LINEA DE COMANDOS   "
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        echo "1. Borrar Fichero"
+        echo "2. Visualizar Datos del Fichero"
+}
+leerOpcion(){
+        #Creo variable local
+        local opcion
+        #Leo la opcion y la guardo en la variable
+        read -p "Introduce una opcion [1-2]: " opcion
+        case $opcion in
+                1)opcion1;; #Lanzo la funcion opcion1
+                2)opcion2;; #Lanzo la funcion opcion2
+                *)echo "ERROR: Debes introducir uno de los valores indicados"
+        esac
+}
+while true
+do
+        read -p "Introduce el nombre del fichero: " fichero
+        mostrarMenu #Muestro el menu
+        leerOpcion  #Leo la opcion
+done

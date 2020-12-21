@@ -1,0 +1,10 @@
+# Suma el numero de parametros que le pasas por linea de comandos
+#!/bin/bash
+limite=$#
+for ((num=1;num<=$limite;num=$num+1))
+do
+        valor=$1
+        suma=$((valor+suma))
+        shift
+done
+echo "$suma"

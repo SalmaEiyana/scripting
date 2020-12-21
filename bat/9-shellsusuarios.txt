@@ -1,0 +1,13 @@
+#!/bin/bash
+dire="/etc/passwd"
+if test -f "$dire"
+then
+        nombre=`cat $dire | cut -d ":" -f7 | sort | uniq`
+        for shell in $nombre
+        do
+                num=`cat $dire | grep -c $shell`
+                echo  "La shell $shell la utilizan $num usuarios"
+        done
+else
+        echo "El fichero no existe"
+fi

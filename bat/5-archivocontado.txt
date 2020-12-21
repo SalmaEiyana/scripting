@@ -1,0 +1,9 @@
+#!/bin/bash
+read -p "Introduce un nombre para los archivos: " nom
+read -p "Introduce la cantidad de archivos: " num
+for ((contador=1;contador<=num;contador=$contador+1))
+do
+        archivo="$HOME/$nom""_""$contador.txt"
+        echo "Este es el archivo $contador" > $archivo
+        echo "$archivo"
+done
